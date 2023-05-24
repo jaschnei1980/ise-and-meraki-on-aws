@@ -23,10 +23,14 @@ Metadata:
           default: Network configuration
         Parameters:
           - VPCID
+          - VPCCIDR
           - AZ1PublicSubnetID
           - AZ2PublicSubnetID
           - AmazonSideASN
           - VPCRouteTableID
+          - VPCPrivateSubnet1ARouteTableID
+          - VPCPrivateSubnet2ARouteTableID
+          - Branch1CIDR
       - Label:
           default: EC2 configuration
         Parameters:
@@ -63,12 +67,20 @@ Metadata:
         default: Authentication token, second vMX instance
       VPCID:
         default: VPC ID
+      VPCCIDR:
+        default: CIDR block for the VPC
       AvailabilityZone1CIDR:
         default: CIDR block for public subnet 1 
       AvailabilityZone2CIDR:
         default: CIDR block for public subnet 2 
+      Branch1CIDR:
+        default: Branch1 CIDR
       VPCRouteTableID:
-        default: Existing VPC route table ID
+        default: Existing VPC route table ID for Public Subnet
+      VPCPrivateSubnet1ARouteTableID:
+        default: Existing VPC route table ID for Private Subnet1
+      VPCPrivateSubnet2ARouteTableID:
+        default: Existing VPC route table ID for Private Subnet2
       QSS3BucketName:
         default: Quick Start S3 bucket name
       QSS3BucketRegion:
@@ -128,9 +140,27 @@ Parameters:
   VPCID:
     Description: ID of the existing VPC for deployment (e.g., `vpc-0343606e`).
     Type: AWS::EC2::VPC::Id
+   VPCCIDR:
+    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$'
+    ConstraintDescription: CIDR block parameter must be in the form `x.x.x.x/16-28`.
+    Default: 10.0.0.0/16
+    Description: CIDR block for the VPC.
+    Type: String
+  Branch1CIDR:
+    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$'
+    ConstraintDescription: CIDR block parameter must be in the form "x.x.x.x/17-28".
+    Default: 10.0.144.0/20
+    Description: CIDR block for the Branch1.
+    Type: String
   VPCRouteTableID:
     Description: ID of the existing VPC main route table (e.g., `rt-0343606e`).
     Type: String
+  VPCPrivateSubnet1ARouteTableID:
+    Description: ID of the existing VPC main route table (e.g., `rt-0343606e`).
+    Type: String
+  VPCPrivateSubnet2ARouteTableID:
+    Description: ID of the existing VPC main route table (e.g., `rt-0343606e`).
+    Type: String    
   QSS3BucketName:
     AllowedPattern: '^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$'
     ConstraintDescription:
@@ -196,26 +226,34 @@ Conditions:
     - !Ref 'NumberOfvMXs'
     - '2'
 Resources:
-#   VMX1Stack:
-#     Condition: 1vMXCondition 
-#     Type: AWS::CloudFormation::Stack
-#     Properties:
-#       TemplateURL:
-#         !Sub
-#           - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-cisco-meraki-sdwan-vmx-instance.yaml
-#           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
-#             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
-#       Parameters:
-#         InstanceType:
-#           Ref: InstanceType
-#         KeyPairName:
-#           Ref: KeyPairName
-#         SubnetID:
-#           Ref: AZ1PublicSubnetID
-#         vMXToken:
-#           Ref: vMX1Token
-#         vMXMerakiNetworkTag:
-#           Ref: vMX1MerakiNetworkTag
+  VMX1Stack:
+    Condition: 1vMXCondition 
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL:
+        !Sub
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-cisco-meraki-sdwan-vmx-instance.yaml
+          - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      Parameters:
+        InstanceType:
+          Ref: InstanceType
+        KeyPairName:
+          Ref: KeyPairName
+        SubnetID:
+          Ref: AZ1PublicSubnetID
+        vMXToken:
+          Ref: vMX1Token
+        vMXMerakiNetworkTag:
+          Ref: vMX1MerakiNetworkTag
+        VPCPrivateSubnetARouteTableID:
+          Ref: VPCPrivateSubnet1ARouteTableID
+        VPCID:
+          Ref: VPCID
+        VPCCIDR:
+          Ref: VPCCIDR
+        Branch1CIDR:
+          Ref: Branch1CIDR
 
 #   VMX2Stack:
 #     Condition: 2vMXCondition 

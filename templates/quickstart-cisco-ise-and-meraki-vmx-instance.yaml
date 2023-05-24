@@ -25,6 +25,25 @@ Parameters:
     Description: Network tag used to identify vMX network for Meraki dashboard.
     Type: String
     Default: vMX
+  VPCPrivateSubnetARouteTableID:
+    Description: ID of the existing VPC private route table (e.g., `rt-0343606e`).
+    Type: String
+  VPCID:
+    Description: ID of the existing VPC for deployment (e.g., `vpc-0343606e`).
+    Type: AWS::EC2::VPC::Id
+  VPCCIDR:
+    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$'
+    ConstraintDescription: CIDR block parameter must be in the form `x.x.x.x/16-28`.
+    Default: 10.0.0.0/16
+    Description: CIDR block for the VPC.
+    Type: String
+  Branch1CIDR:
+    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$'
+    ConstraintDescription: CIDR block parameter must be in the form "x.x.x.x/17-28".
+    Default: 10.0.144.0/20
+    Description: CIDR block for the Branch1.
+    Type: String
+
 Mappings:
   AWSVMXAMI:
     us-east-1:
@@ -69,6 +88,23 @@ Mappings:
       AMI: ami-044eae2d8e3fb2188
 
 Resources:
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: Security Group to Allow Internal VPC Traffic and from Branches
+      GroupName: VPC-Security-Group
+      SecurityGroupEgress: 
+        - IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+      SecurityGroupIngress: 
+        - IpProtocol: -1
+          CidrIp: !Ref 'VPCCIDR'
+        - IpProtocol: -1
+          CidrIp: !Ref 'Branch1CIDR'
+      Tags: 
+        - Tag
+      VpcId: !Ref 'VPCID'
+  
   vMXInstance:
     Type: AWS::EC2::Instance
     Properties:
@@ -83,6 +119,8 @@ Resources:
         - AssociatePublicIpAddress: true
           DeviceIndex: '0'
           SubnetId: !Ref 'SubnetID'
+          GroupSet:
+            - !GetAtt 'SecurityGroup.GroupId'
       UserData:
         Fn::Base64: !Ref 'vMXToken'
       Tags:
@@ -93,7 +131,16 @@ Resources:
         - Key: MerakiTag
           Value:
             Ref: vMXMerakiNetworkTag
+  Branch1Route:          
+    Type: AWS::EC2::Route
+    DependsOn: vMXInstance
+    Properties:
+      DestinationCdrBlock: !Ref 'Branch1CIDR'
+      InstanceId: !Ref 'vMXInstance'
+      RouteTableId: !Ref 'VPCPrivateSubnetARouteTableID'
 
 Outputs:
   vMXInstanceID:
     Value: !Ref 'vMXInstance'
+  SecurityGroup:
+    Value: !Ref 'SecurityGroup'
