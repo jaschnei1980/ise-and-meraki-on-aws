@@ -185,6 +185,7 @@ Parameters:
   MerakiOrgID:
     Description: Meraki organization ID.
     Type: String
+    NoEcho: 'true'
   MerakiAPIKey:
     Description: Meraki organization API key.
     Type: String
@@ -307,9 +308,9 @@ Parameters:
     Description: EC2 key pair name.
     ConstraintDescription: Must be the name of an existing EC2 key pair. vMX instances launch with this key pair.
     Type: "AWS::EC2::KeyPair::KeyName"
-  AmazonSideASN:
-    Description: Autonomous System Number (ASN) for the transit gateway.
-    Type: String
+  # AmazonSideASN:
+  #   Description: Autonomous System Number (ASN) for the transit gateway.
+  #   Type: String
   # LambdaRate:
   #   Description: How often the CloudWatch Events rule runs. The rule invokes AWS Lambda to update the VPC and transit gateway route tables. 
   #   Default: rate(10 minutes)
