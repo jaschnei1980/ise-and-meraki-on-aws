@@ -11,6 +11,13 @@ Not in terminal, reprint now using normal build-in print function.
 
 [INFO   ] : Linting passed for file: /home/ec2-user/environment/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-ise-instance.template.yaml
 [WARN   ] : ---
+[WARN   ] : Linting detected issues in: /home/ec2-user/environment/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-workload.template.yaml
+[WARN   ] :     line 188 [2001] [Check if Parameters are Used] Parameter MerakiOrgID not used.
+[WARN   ] :     line 191 [2001] [Check if Parameters are Used] Parameter MerakiAPIKey not used.
+[WARN   ] :     line 204 [2001] [Check if Parameters are Used] Parameter NumberOfvMXs not used.
+[WARN   ] :     line 230 [2001] [Check if Parameters are Used] Parameter AZ2PublicSubnetID not used.
+[WARN   ] :     line 248 [2001] [Check if Parameters are Used] Parameter VPCRouteTableID not used.
+[WARN   ] : ---
 [WARN   ] : Linting detected issues in: /home/ec2-user/environment/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-new-vpc.template.yaml
 [WARN   ] :     line 310 [2001] [Check if Parameters are Used] Parameter AmazonSideASN not used.
 [WARN   ] :     line 887 [3005] [Check obsolete DependsOn configuration for Resources] Obsolete DependsOn on resource (VPCStack),
@@ -53,164 +60,368 @@ Not in terminal, reprint now using normal build-in print function.
 [WARN   ] :     line 174 [3005] [Check obsolete DependsOn configuration for Resources] Obsolete DependsOn on resource (vMX2Instance),
                                                                              dependency already enforced by a "Ref" at Resources/
                                                                              Branch1Private2Route/Properties/InstanceId/Ref
-[WARN   ] : ---
-[WARN   ] : Linting detected issues in: /home/ec2-user/environment/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-workload.template.yaml
-[WARN   ] :     line 188 [2001] [Check if Parameters are Used] Parameter MerakiOrgID not used.
-[WARN   ] :     line 191 [2001] [Check if Parameters are Used] Parameter MerakiAPIKey not used.
-[WARN   ] :     line 204 [2001] [Check if Parameters are Used] Parameter NumberOfvMXs not used.
-[WARN   ] :     line 230 [2001] [Check if Parameters are Used] Parameter AZ2PublicSubnetID not used.
-[WARN   ] :     line 248 [2001] [Check if Parameters are Used] Parameter VPCRouteTableID not used.
 [S3: -> ] s3://tcat-db9234881be35d5799f1ab467742a8b9-us-east-1/ise-and-meraki-on-aws/screen-logs.txt
-[S3: -> ] s3://tcat-db9234881be35d5799f1ab467742a8b9-us-east-1/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-workload.template.yaml
-[S3: -> ] s3://tcat-db9234881be35d5799f1ab467742a8b9-us-east-1/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-vmx-instance.yaml
-[S3: -> ] s3://tcat-db9234881be35d5799f1ab467742a8b9-us-east-1/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-ise-instance.template.yaml
-         ┏ stack Ⓜ tCaT-default-6b1867
+         ┏ stack Ⓜ tCaT-default-fefbce
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
          ┗ status: CREATE_IN_PROGRESS
-[INFO   ] : ┏ stack Ⓜ tCaT-default-6b1867
-[INFO   ] : ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
-[INFO   ] : ┣ region: us-east-1
-[INFO   ] : ┗ status: CREATE_FAILED 
-[INFO   ] : Reporting on arn:aws:cloudformation:us-east-1:593848467775:stack/tCaT-default-6b1867/c9cdeb50-faba-11ed-a8d8-0aeb551f0391
-[INFO   ] : Deleting stack: arn:aws:cloudformation:us-east-1:593848467775:stack/tCaT-default-6b1867/c9cdeb50-faba-11ed-a8d8-0aeb551f0391
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-         ┏ stack Ⓜ tCaT-default-6b1867
-         ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
          ┣ region: us-east-1
-         ┗ status: DELETE_IN_PROGRESS
-[INFO   ] : ┏ stack Ⓜ tCaT-default-6b1867
-[INFO   ] : ┣ stack Ⓝ tCaT-default-6b1867-VPCStack-6HMEX2BJZL9K
-[INFO   ] : ┣ region: us-east-1
-[INFO   ] : ┗ status: OUT_OF_ORDER_EVENT 
-[ERROR  ] : One or more stacks failed to create: {'arn:aws:cloudformation:us-east-1:593848467775:stack/tCaT-default-6b1867/c9cdeb50-faba-11ed-a8d8-0aeb551f0391': 'COMPLETE event not detected. Potential out-of-band action against the stack.'}
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+         ┣ stack Ⓝ tCaT-default-fefbce-VPCStack-1QT9BR6LSQDEM
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-ISEStack-1EDDZUKXSRADQ
+         ┣ stack Ⓝ tCaT-default-fefbce-WorkloadStack-93B7U0HNFUJD-VMXStack-4Z5SQQ9IVPW9
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-fefbce
+[ERROR  ] : ClientError An error occurred (ExpiredToken) when calling the DeleteStack operation: The security token included in the request is expired
+Exception in thread Thread-2569:
+Traceback (most recent call last):
+  File "/usr/lib64/python3.7/threading.py", line 926, in _bootstrap_inner
+    self.run()
+  File "/usr/lib64/python3.7/threading.py", line 1177, in run
+    self.function(*self.args, **self.kwargs)
+  File "/home/ec2-user/environment/vpy3/lib/python3.7/site-packages/taskcat/_cfn/stack.py", line 425, in refresh
+    self.set_stack_properties()
+  File "/home/ec2-user/environment/vpy3/lib/python3.7/site-packages/taskcat/_cfn/stack.py", line 442, in set_stack_properties
+    props = describe_stacks(StackName=self.id)["Stacks"][0]
+  File "/home/ec2-user/environment/vpy3/lib/python3.7/site-packages/botocore/client.py", line 530, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/ec2-user/environment/vpy3/lib/python3.7/site-packages/botocore/client.py", line 964, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (ExpiredToken) when calling the DescribeStacks operation: The security token included in the request is expired
+
+Exception in thread Thread-2570:
+Traceback (most recent call last):
+  File "/usr/lib64/python3.7/threading.py", line 926, in _bootstrap_inner
+    self.run()
+  File "/usr/lib64/python3.7/threading.py", line 1177, in run
+    self.function(*self.args, **self.kwargs)
+  File "/home/ec2-user/environment/vpy3/lib/python3.7/site-packages/taskcat/_cfn/stack.py", line 425, in refresh
+    self.set_stack_properties()
+  File "/home/ec2-user/environment/vpy3/lib/python3.7/site-packages/taskcat/_cfn/stack.py", line 442, in set_stack_properties
+    props = describe_stacks(StackName=self.id)["Stacks"][0]
+  File "/home/ec2-user/environment/vpy3/lib/python3.7/site-packages/botocore/client.py", line 530, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/ec2-user/environment/vpy3/lib/python3.7/site-packages/botocore/client.py", line 964, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (ExpiredToken) when calling the DescribeStacks operation: The security token included in the request is expired
+
