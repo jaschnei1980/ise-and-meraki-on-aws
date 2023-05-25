@@ -217,17 +217,17 @@ Parameters:
     Type: String
 Conditions:
   UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
-  1vMXCondition: !Or
-    - !Equals
-      - !Ref 'NumberOfvMXs'
-      - '1'
-    - !Condition 2vMXCondition
-  2vMXCondition: !Equals
-    - !Ref 'NumberOfvMXs'
-    - '2'
+#   1vMXCondition: !Or
+#     - !Equals
+#       - !Ref 'NumberOfvMXs'
+#       - '1'
+#     - !Condition 2vMXCondition
+#   2vMXCondition: !Equals
+#     - !Ref 'NumberOfvMXs'
+#     - '2'
 Resources:
-  VMX1Stack:
-    Condition: 1vMXCondition 
+  VMXStack:
+    # Condition: 1vMXCondition 
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL:
@@ -242,12 +242,18 @@ Resources:
           Ref: KeyPairName
         SubnetID:
           Ref: AZ1PublicSubnetID
-        vMXToken:
+        vMX1Token:
           Ref: vMX1Token
-        vMXMerakiNetworkTag:
+        vMX2Token:
+          Ref: vMX2Token
+        vMX1MerakiNetworkTag:
           Ref: vMX1MerakiNetworkTag
-        VPCPrivateSubnetARouteTableID:
+        vMX2MerakiNetworkTag:
+          Ref: vMX2MerakiNetworkTag
+        VPCPrivateSubnet1ARouteTableID:
           Ref: VPCPrivateSubnet1ARouteTableID
+        VPCPrivateSubnet2ARouteTableID:
+          Ref: VPCPrivateSubnet2ARouteTableID  
         VPCID:
           Ref: VPCID
         VPCCIDR:
@@ -320,14 +326,14 @@ Outputs:
     Description: First vMX instance ID.
     Value:
       Fn::GetAtt:
-      - VMX1Stack 
-      - Outputs.vMXInstanceID
-#   vMX2InstanceID:
-#     Description: Second vMX instance ID.
-#     Value:
-#       Fn::GetAtt:
-#       - VMX2Stack 
-#       - Outputs.vMXInstanceID
+      - VMXStack 
+      - Outputs.vMX1InstanceID
+  vMX2InstanceID:
+    Description: Second vMX instance ID.
+    Value:
+      Fn::GetAtt:
+      - VMXStack 
+      - Outputs.vMX2InstanceID
 #   TransitGatewayID:
 #     Description: Transit gateway instance ID.
 #     Value:

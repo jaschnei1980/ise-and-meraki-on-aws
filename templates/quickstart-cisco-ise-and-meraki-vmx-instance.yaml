@@ -17,15 +17,26 @@ Parameters:
   SubnetID:
     Description: Subnet ID to be used for the deployment of vMX in an Availability Zone
     Type: 'AWS::EC2::Subnet::Id'
-  vMXToken:
-    Description: Onboarding token to be used for the vMX. This can be obtained from the Meraki dashboard. 
+  vMX1Token:
+    Description: Onboarding token to be used for the vMX1. This can be obtained from the Meraki dashboard. 
     Type: String
     Default: change_to_match_token_from_dashboard
-  vMXMerakiNetworkTag:
-    Description: Network tag used to identify vMX network for Meraki dashboard.
+  vMX2Token:
+    Description: Onboarding token to be used for the vMX2. This can be obtained from the Meraki dashboard. 
+    Type: String
+    Default: change_to_match_token_from_dashboard
+  vMX1MerakiNetworkTag:
+    Description: Network tag used to identify vMX1 network for Meraki dashboard.
     Type: String
     Default: vMX
-  VPCPrivateSubnetARouteTableID:
+  vMX2MerakiNetworkTag:
+    Description: Network tag used to identify vMX2 network for Meraki dashboard.
+    Type: String
+    Default: vMX
+  VPCPrivateSubnet1ARouteTableID:
+    Description: ID of the existing VPC private route table (e.g., `rt-0343606e`).
+    Type: String
+  VPCPrivateSubnet2ARouteTableID:
     Description: ID of the existing VPC private route table (e.g., `rt-0343606e`).
     Type: String
   VPCID:
@@ -103,7 +114,7 @@ Resources:
           CidrIp: !Ref 'Branch1CIDR'
       VpcId: !Ref 'VPCID'
   
-  vMXInstance:
+  vMX1Instance:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: !FindInMap
@@ -120,7 +131,7 @@ Resources:
           GroupSet:
             - !GetAtt 'SecurityGroup.GroupId'
       UserData:
-        Fn::Base64: !Ref 'vMXToken'
+        Fn::Base64: !Ref 'vMX1Token'
       Tags:
         - Key: Name
           Value: !Join
@@ -128,17 +139,52 @@ Resources:
             - - !Ref 'AWS::StackId'
         - Key: MerakiTag
           Value:
-            Ref: vMXMerakiNetworkTag
-  Branch1Route:          
+            Ref: vMX1MerakiNetworkTag
+  vMX2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap
+        - AWSVMXAMI
+        - !Ref 'AWS::Region'
+        - AMI
+      InstanceType: !Ref 'InstanceType'
+      KeyName: !Ref 'KeyPairName'
+      SourceDestCheck: false
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: true
+          DeviceIndex: '0'
+          SubnetId: !Ref 'SubnetID'
+          GroupSet:
+            - !GetAtt 'SecurityGroup.GroupId'
+      UserData:
+        Fn::Base64: !Ref 'vMX2Token'
+      Tags:
+        - Key: Name
+          Value: !Join
+            - '-'
+            - - !Ref 'AWS::StackId'
+        - Key: MerakiTag
+          Value:
+            Ref: vMX2MerakiNetworkTag            
+  Branch1Private1Route:          
     Type: AWS::EC2::Route
-    DependsOn: vMXInstance
+    DependsOn: vMX1Instance
     Properties:
       DestinationCidrBlock: !Ref 'Branch1CIDR'
-      InstanceId: !Ref 'vMXInstance'
-      RouteTableId: !Ref 'VPCPrivateSubnetARouteTableID'
+      InstanceId: !Ref 'vMX1Instance'
+      RouteTableId: !Ref 'VPCPrivateSubnet1ARouteTableID'
+  Branch1Private2Route:          
+    Type: AWS::EC2::Route
+    DependsOn: vMX2Instance
+    Properties:
+      DestinationCidrBlock: !Ref 'Branch1CIDR'
+      InstanceId: !Ref 'vMX2Instance'
+      RouteTableId: !Ref 'VPCPrivateSubnet2ARouteTableID'
 
 Outputs:
-  vMXInstanceID:
-    Value: !Ref 'vMXInstance'
+  vMX1InstanceID:
+    Value: !Ref 'vMX1Instance'
+  vMX2InstanceID:
+    Value: !Ref 'vMX2Instance'
   SecurityGroup:
     Value: !Ref 'SecurityGroup'
