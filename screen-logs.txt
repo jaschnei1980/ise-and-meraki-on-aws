@@ -1,0 +1,474 @@
+ _            _             _   
+| |_ __ _ ___| | _____ __ _| |_ 
+| __/ _` / __| |/ / __/ _` | __|
+| || (_| \__ \   < (_| (_| | |_ 
+ \__\__,_|___/_|\_\___\__,_|\__|
+                                
+
+
+version 0.9.38
+Not in terminal, reprint now using normal build-in print function.
+
+[WARN   ] : ---
+[WARN   ] : Linting detected issues in: /home/ec2-user/environment/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-new-vpc.template.yaml
+[WARN   ] :     line 249 [3005] [Check obsolete DependsOn configuration for Resources] Obsolete DependsOn on resource (VPCStack),
+                                                                             dependency already enforced by a "Fn:GetAtt" at Reso
+                                                                             urces/WorkloadStack/Properties/Parameters/AZ1PublicS
+                                                                             ubnetID/Fn::GetAtt
+[WARN   ] :     line 249 [3005] [Check obsolete DependsOn configuration for Resources] Obsolete DependsOn on resource (VPCStack),
+                                                                             dependency already enforced by a "Fn:GetAtt" at Reso
+                                                                             urces/WorkloadStack/Properties/Parameters/AZ2PublicS
+                                                                             ubnetID/Fn::GetAtt
+[WARN   ] :     line 249 [3005] [Check obsolete DependsOn configuration for Resources] Obsolete DependsOn on resource (VPCStack),
+                                                                             dependency already enforced by a "Fn:GetAtt" at Reso
+                                                                             urces/WorkloadStack/Properties/Parameters/VPCID/Fn::
+                                                                             GetAtt
+[WARN   ] :     line 249 [3005] [Check obsolete DependsOn configuration for Resources] Obsolete DependsOn on resource (VPCStack),
+                                                                             dependency already enforced by a "Fn:GetAtt" at Reso
+                                                                             urces/WorkloadStack/Properties/Parameters/VPCRouteTa
+                                                                             bleID/Fn::GetAtt
+[WARN   ] :     line 249 [3005] [Check obsolete DependsOn configuration for Resources] Obsolete DependsOn on resource (VPCStack),
+                                                                             dependency already enforced by a "Fn:GetAtt" at Reso
+                                                                             urces/WorkloadStack/Properties/Parameters/VPCPrivate
+                                                                             Subnet1ARouteTableID/Fn::GetAtt
+[WARN   ] :     line 249 [3005] [Check obsolete DependsOn configuration for Resources] Obsolete DependsOn on resource (VPCStack),
+                                                                             dependency already enforced by a "Fn:GetAtt" at Reso
+                                                                             urces/WorkloadStack/Properties/Parameters/VPCPrivate
+                                                                             Subnet2ARouteTableID/Fn::GetAtt
+[WARN   ] : ---
+[WARN   ] : Linting detected issues in: /home/ec2-user/environment/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-vmx-instance.yaml
+[WARN   ] :     line 134 [3005] [Check obsolete DependsOn configuration for Resources] Obsolete DependsOn on resource (vMXInstance),
+                                                                             dependency already enforced by a "Ref" at
+                                                                             Resources/Branch1Route/Properties/InstanceId/Ref
+[WARN   ] : ---
+[WARN   ] : Linting detected issues in: /home/ec2-user/environment/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-workload.template.yaml
+[WARN   ] :     line 72 [4001] [Metadata Interface parameters exist] Metadata Interface parameter doesn't exist AvailabilityZone1CIDR
+[WARN   ] :     line 74 [4001] [Metadata Interface parameters exist] Metadata Interface parameter doesn't exist AvailabilityZone2CIDR
+[WARN   ] :     line 95 [2001] [Check if Parameters are Used] Parameter MerakiOrgID not used.
+[WARN   ] :     line 98 [2001] [Check if Parameters are Used] Parameter MerakiAPIKey not used.
+[WARN   ] :     line 122 [2001] [Check if Parameters are Used] Parameter vMX2MerakiNetworkTag not used.
+[WARN   ] :     line 130 [2001] [Check if Parameters are Used] Parameter vMX2Token not used.
+[WARN   ] :     line 137 [2001] [Check if Parameters are Used] Parameter AZ2PublicSubnetID not used.
+[WARN   ] :     line 155 [2001] [Check if Parameters are Used] Parameter VPCRouteTableID not used.
+[WARN   ] :     line 161 [2001] [Check if Parameters are Used] Parameter VPCPrivateSubnet2ARouteTableID not used.
+[WARN   ] :     line 207 [2001] [Check if Parameters are Used] Parameter AmazonSideASN not used.
+[WARN   ] :     line 210 [2001] [Check if Parameters are Used] Parameter LambdaRate not used.
+[WARN   ] :     line 322 [1001] [Ref/GetAtt to resource that is available when conditions are applied] GetAtt to resource "VMX1Stack" that
+                                                                                             may not be available when condition
+                                                                                             "1vMXCondition" is False at Outputs/
+                                                                                             vMX1InstanceID/Value/Fn::GetAtt
+[S3: -> ] s3://tcat-db9234881be35d5799f1ab467742a8b9-us-east-1/ise-and-meraki-on-aws/screen-logs.txt
+[S3: -> ] s3://tcat-db9234881be35d5799f1ab467742a8b9-us-east-1/ise-and-meraki-on-aws/templates/quickstart-cisco-ise-and-meraki-workload.template.yaml
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: CREATE_IN_PROGRESS
+[INFO   ] : ┏ stack Ⓜ tCaT-default-a7c598
+[INFO   ] : ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+[INFO   ] : ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+[INFO   ] : ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+[INFO   ] : ┣ region: us-east-1
+[INFO   ] : ┗ status: CREATE_COMPLETE 
+[INFO   ] : Reporting on arn:aws:cloudformation:us-east-1:593848467775:stack/tCaT-default-a7c598/70ca2aa0-fa92-11ed-a39c-0ee30e832453
+[INFO   ] : Deleting stack: arn:aws:cloudformation:us-east-1:593848467775:stack/tCaT-default-a7c598/70ca2aa0-fa92-11ed-a39c-0ee30e832453
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+         ┏ stack Ⓜ tCaT-default-a7c598
+         ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+         ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+         ┣ region: us-east-1
+         ┗ status: DELETE_IN_PROGRESS
+[INFO   ] : ┏ stack Ⓜ tCaT-default-a7c598
+[INFO   ] : ┣ stack Ⓝ tCaT-default-a7c598-VPCStack-1BZ19UWN9E2VO
+[INFO   ] : ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU
+[INFO   ] : ┣ stack Ⓝ tCaT-default-a7c598-WorkloadStack-REMSB8G052YU-VMX1Stack-SU4V0GDFD730
+[INFO   ] : ┣ region: us-east-1
+[INFO   ] : ┗ status: DELETE_COMPLETE 

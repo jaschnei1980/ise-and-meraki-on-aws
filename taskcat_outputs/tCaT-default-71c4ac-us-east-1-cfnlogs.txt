@@ -1,0 +1,113 @@
+-----------------------------------------------------------------------------
+Region: us-east-1
+StackName: tCaT-default-71c4ac
+*****************************************************************************
+ResourceStatusReason:  
+The following resource(s) failed to create: [WorkloadStack].
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                LogicalResourceId    ResourceStatusReason
+--------------------------------  ------------------  --------------------------  -------------------  -----------------------------------------------------------------
+2023-05-24 23:41:04.115000+00:00  CREATE_FAILED       AWS::CloudFormation::Stack  tCaT-default-71c4ac  The following resource(s) failed to create: [WorkloadStack].
+2023-05-24 23:41:03.364000+00:00  CREATE_FAILED       AWS::CloudFormation::Stack  WorkloadStack        Template format error: YAML not well-formed. (line 143, column 4)
+2023-05-24 23:41:02.689000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  WorkloadStack
+2023-05-24 23:40:59.329000+00:00  CREATE_COMPLETE     AWS::CloudFormation::Stack  VPCStack
+2023-05-24 23:37:28.122000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  VPCStack             Resource creation Initiated
+2023-05-24 23:37:27.029000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  VPCStack
+2023-05-24 23:37:21.586000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  tCaT-default-71c4ac  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Wednesday, 24. May 2023 11:41PM
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Region: us-east-1
+StackName: tCaT-default-71c4ac-VPCStack-1ELBMT05SH8PZ
+*****************************************************************************
+ResourceStatusReason:  
+Stack launch was successful
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                           LogicalResourceId                           ResourceStatusReason
+--------------------------------  ------------------  -------------------------------------  ------------------------------------------  ---------------------------
+2023-05-24 23:40:40.939000+00:00  CREATE_COMPLETE     AWS::CloudFormation::Stack             tCaT-default-71c4ac-VPCStack-1ELBMT05SH8PZ
+2023-05-24 23:40:36.538000+00:00  CREATE_COMPLETE     AWS::EC2::Route                        PrivateSubnet1ARoute
+2023-05-24 23:40:25.586000+00:00  CREATE_COMPLETE     AWS::EC2::Route                        PrivateSubnet2ARoute
+2023-05-24 23:40:21.093000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Route                        PrivateSubnet1ARoute                        Resource creation Initiated
+2023-05-24 23:40:19.804000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Route                        PrivateSubnet1ARoute
+2023-05-24 23:40:15.568000+00:00  CREATE_COMPLETE     AWS::EC2::NatGateway                   NATGateway1
+2023-05-24 23:40:10.193000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Route                        PrivateSubnet2ARoute                        Resource creation Initiated
+2023-05-24 23:40:08.814000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Route                        PrivateSubnet2ARoute
+2023-05-24 23:40:04.316000+00:00  CREATE_COMPLETE     AWS::EC2::NatGateway                   NATGateway2
+2023-05-24 23:38:34.842000+00:00  CREATE_IN_PROGRESS  AWS::EC2::NatGateway                   NATGateway1                                 Resource creation Initiated
+2023-05-24 23:38:34.325000+00:00  CREATE_IN_PROGRESS  AWS::EC2::NatGateway                   NATGateway2                                 Resource creation Initiated
+2023-05-24 23:38:33.501000+00:00  CREATE_IN_PROGRESS  AWS::EC2::NatGateway                   NATGateway1
+2023-05-24 23:38:32.897000+00:00  CREATE_IN_PROGRESS  AWS::EC2::NatGateway                   NATGateway2
+2023-05-24 23:38:30.136000+00:00  CREATE_COMPLETE     AWS::EC2::EIP                          NAT1EIP
+2023-05-24 23:38:29.954000+00:00  CREATE_COMPLETE     AWS::EC2::EIP                          NAT2EIP
+2023-05-24 23:38:29.492000+00:00  CREATE_COMPLETE     AWS::EC2::Route                        PublicSubnetRoute
+2023-05-24 23:38:23.255000+00:00  CREATE_COMPLETE     AWS::EC2::VPCEndpoint                  S3VPCEndpoint
+2023-05-24 23:38:18.482000+00:00  CREATE_COMPLETE     AWS::EC2::SubnetRouteTableAssociation  PublicSubnet1RouteTableAssociation
+2023-05-24 23:38:17.453000+00:00  CREATE_COMPLETE     AWS::EC2::SubnetRouteTableAssociation  PrivateSubnet1ARouteTableAssociation
+2023-05-24 23:38:14.460000+00:00  CREATE_IN_PROGRESS  AWS::EC2::EIP                          NAT1EIP                                     Resource creation Initiated
+2023-05-24 23:38:14.241000+00:00  CREATE_IN_PROGRESS  AWS::EC2::EIP                          NAT2EIP                                     Resource creation Initiated
+2023-05-24 23:38:14.120000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Route                        PublicSubnetRoute                           Resource creation Initiated
+2023-05-24 23:38:13.396000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Route                        PublicSubnetRoute
+2023-05-24 23:38:13.262000+00:00  CREATE_IN_PROGRESS  AWS::EC2::EIP                          NAT1EIP
+2023-05-24 23:38:12.800000+00:00  CREATE_IN_PROGRESS  AWS::EC2::EIP                          NAT2EIP
+2023-05-24 23:38:09.996000+00:00  CREATE_COMPLETE     AWS::EC2::VPCGatewayAttachment         VPCGatewayAttachment
+2023-05-24 23:38:07.900000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SubnetRouteTableAssociation  PublicSubnet1RouteTableAssociation          Resource creation Initiated
+2023-05-24 23:38:07.746000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPCEndpoint                  S3VPCEndpoint                               Resource creation Initiated
+2023-05-24 23:38:07.328000+00:00  CREATE_COMPLETE     AWS::EC2::SubnetRouteTableAssociation  PrivateSubnet2ARouteTableAssociation
+2023-05-24 23:38:07.059000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SubnetRouteTableAssociation  PrivateSubnet2ARouteTableAssociation        Resource creation Initiated
+2023-05-24 23:38:06.979000+00:00  CREATE_COMPLETE     AWS::EC2::SubnetRouteTableAssociation  PublicSubnet2RouteTableAssociation
+2023-05-24 23:38:06.937000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SubnetRouteTableAssociation  PrivateSubnet1ARouteTableAssociation        Resource creation Initiated
+2023-05-24 23:38:06.733000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SubnetRouteTableAssociation  PublicSubnet2RouteTableAssociation          Resource creation Initiated
+2023-05-24 23:38:06.415000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SubnetRouteTableAssociation  PublicSubnet1RouteTableAssociation
+2023-05-24 23:38:06.275000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPCEndpoint                  S3VPCEndpoint
+2023-05-24 23:38:05.595000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SubnetRouteTableAssociation  PrivateSubnet2ARouteTableAssociation
+2023-05-24 23:38:05.564000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SubnetRouteTableAssociation  PrivateSubnet1ARouteTableAssociation
+2023-05-24 23:38:05.171000+00:00  CREATE_IN_PROGRESS  AWS::EC2::SubnetRouteTableAssociation  PublicSubnet2RouteTableAssociation
+2023-05-24 23:38:01.927000+00:00  CREATE_COMPLETE     AWS::EC2::RouteTable                   PublicSubnetRouteTable
+2023-05-24 23:38:01.784000+00:00  CREATE_COMPLETE     AWS::EC2::RouteTable                   PrivateSubnet2ARouteTable
+2023-05-24 23:38:01.759000+00:00  CREATE_COMPLETE     AWS::EC2::RouteTable                   PrivateSubnet1ARouteTable
+2023-05-24 23:37:55.501000+00:00  CREATE_COMPLETE     AWS::EC2::Subnet                       PublicSubnet1
+2023-05-24 23:37:54.878000+00:00  CREATE_COMPLETE     AWS::EC2::Subnet                       PublicSubnet2
+2023-05-24 23:37:54.713000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPCGatewayAttachment         VPCGatewayAttachment                        Resource creation Initiated
+2023-05-24 23:37:54.308000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPCGatewayAttachment         VPCGatewayAttachment
+2023-05-24 23:37:53.903000+00:00  CREATE_COMPLETE     AWS::EC2::Subnet                       PrivateSubnet2A
+2023-05-24 23:37:53.844000+00:00  CREATE_COMPLETE     AWS::EC2::Subnet                       PrivateSubnet1A
+2023-05-24 23:37:52.723000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet                       PublicSubnet1                               Resource creation Initiated
+2023-05-24 23:37:52.097000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet                       PublicSubnet2                               Resource creation Initiated
+2023-05-24 23:37:51.535000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet                       PublicSubnet1
+2023-05-24 23:37:51.483000+00:00  CREATE_COMPLETE     AWS::EC2::InternetGateway              InternetGateway
+2023-05-24 23:37:51.440000+00:00  CREATE_IN_PROGRESS  AWS::EC2::RouteTable                   PublicSubnetRouteTable                      Resource creation Initiated
+2023-05-24 23:37:51.357000+00:00  CREATE_COMPLETE     AWS::EC2::VPCDHCPOptionsAssociation    VPCDHCPOptionsAssociation
+2023-05-24 23:37:51.282000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet                       PrivateSubnet2A                             Resource creation Initiated
+2023-05-24 23:37:51.233000+00:00  CREATE_IN_PROGRESS  AWS::EC2::RouteTable                   PrivateSubnet2ARouteTable                   Resource creation Initiated
+2023-05-24 23:37:51.220000+00:00  CREATE_IN_PROGRESS  AWS::EC2::RouteTable                   PrivateSubnet1ARouteTable                   Resource creation Initiated
+2023-05-24 23:37:51.218000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet                       PrivateSubnet1A                             Resource creation Initiated
+2023-05-24 23:37:51.087000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPCDHCPOptionsAssociation    VPCDHCPOptionsAssociation                   Resource creation Initiated
+2023-05-24 23:37:50.863000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet                       PublicSubnet2
+2023-05-24 23:37:50.079000+00:00  CREATE_IN_PROGRESS  AWS::EC2::RouteTable                   PublicSubnetRouteTable
+2023-05-24 23:37:50.076000+00:00  CREATE_IN_PROGRESS  AWS::EC2::RouteTable                   PrivateSubnet1ARouteTable
+2023-05-24 23:37:50.045000+00:00  CREATE_IN_PROGRESS  AWS::EC2::RouteTable                   PrivateSubnet2ARouteTable
+2023-05-24 23:37:50.032000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet                       PrivateSubnet2A
+2023-05-24 23:37:49.974000+00:00  CREATE_IN_PROGRESS  AWS::EC2::Subnet                       PrivateSubnet1A
+2023-05-24 23:37:49.891000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPCDHCPOptionsAssociation    VPCDHCPOptionsAssociation
+2023-05-24 23:37:47.117000+00:00  CREATE_COMPLETE     AWS::EC2::VPC                          VPC
+2023-05-24 23:37:41.458000+00:00  CREATE_COMPLETE     AWS::EC2::DHCPOptions                  DHCPOptions
+2023-05-24 23:37:36.391000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPC                          VPC                                         Resource creation Initiated
+2023-05-24 23:37:35.927000+00:00  CREATE_IN_PROGRESS  AWS::EC2::InternetGateway              InternetGateway                             Resource creation Initiated
+2023-05-24 23:37:35.891000+00:00  CREATE_IN_PROGRESS  AWS::EC2::DHCPOptions                  DHCPOptions                                 Resource creation Initiated
+2023-05-24 23:37:34.958000+00:00  CREATE_IN_PROGRESS  AWS::EC2::VPC                          VPC
+2023-05-24 23:37:34.790000+00:00  CREATE_IN_PROGRESS  AWS::EC2::DHCPOptions                  DHCPOptions
+2023-05-24 23:37:34.692000+00:00  CREATE_IN_PROGRESS  AWS::EC2::InternetGateway              InternetGateway
+2023-05-24 23:37:27.836000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack             tCaT-default-71c4ac-VPCStack-1ELBMT05SH8PZ  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Wednesday, 24. May 2023 11:41PM
+-----------------------------------------------------------------------------
+

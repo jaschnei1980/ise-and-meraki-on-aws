@@ -232,7 +232,7 @@ Resources:
     Properties:
       TemplateURL:
         !Sub
-          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-cisco-ise-and-meraki-vmx-instance.yaml
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-cisco-meraki-sdwan-vmx-instance.yaml
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
@@ -312,16 +312,16 @@ Resources:
 #         LambdaRate:
 #           Ref: LambdaRate
         
-Outputs:
-  VPCID:
-    Description: The ID of the deployed SD-WAN VPC.
-    Value: !Ref VPCID
-  vMX1InstanceID:
-    Description: First vMX instance ID.
-    Value:
-      Fn::GetAtt:
-      - VMX1Stack 
-      - Outputs.vMXInstanceID
+# Outputs:
+#   VPCID:
+#     Description: The ID of the deployed SD-WAN VPC.
+#     Value: !Ref VPCID
+#   vMX1InstanceID:
+#     Description: First vMX instance ID.
+#     Value:
+#       Fn::GetAtt:
+#       - VMX1Stack 
+#       - Outputs.vMXInstanceID
 #   vMX2InstanceID:
 #     Description: Second vMX instance ID.
 #     Value:

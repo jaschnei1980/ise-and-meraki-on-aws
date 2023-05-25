@@ -1,0 +1,26 @@
+general:
+  s3_regional_buckets: true
+project:
+  name: ise-and-meraki-on-aws
+  shorten_stack_name: true
+  regions:
+  - ap-southeast-1
+  - us-east-1
+  - us-west-2
+  - eu-central-1
+tests:
+  default:
+    template: ./templates/quickstart-cisco-ise-and-meraki-new-vpc.template.yaml
+    regions:
+    - us-east-1
+    parameters:
+      MerakiOrgID: "772005"
+      MerakiAPIKey: "56b97420cbc8e498d01fe3b259a027bda20a29ea"
+      NumberOfvMXs: "1"
+      vMX1Token: "5ed93946d500e3721a56ea33c2c3df92/c3e3d3e9e5d0875e4789c0e96512084fe298cd5054227057d6405f5c5337b19deef748f350e1d21e6925ff0b0572ce428906a416234dfc6e38f53f79f9c1b4a5/ff6324a093957fca8743d3a1e4d40eb861afd42b42f5f7bdc4b746d04fd8820d"
+      AvailabilityZones: "$[taskcat_genaz_2]"
+      AmazonSideASN: "65100"
+      QSS3BucketName: "$[taskcat_autobucket]"
+      QSS3KeyPrefix: "ise-and-meraki-on-aws/"
+      QSS3BucketRegion: "$[taskcat_current_region]"
+      KeyPairName: "ise-quickstart"

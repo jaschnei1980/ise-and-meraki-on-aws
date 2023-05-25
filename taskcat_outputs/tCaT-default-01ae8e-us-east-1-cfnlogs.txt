@@ -1,0 +1,19 @@
+-----------------------------------------------------------------------------
+Region: us-east-1
+StackName: tCaT-default-01ae8e
+*****************************************************************************
+ResourceStatusReason:  
+Parameter validation failed: parameter value key-06be34ddb6f18111d for parameter name
+KeyPairName does not exist
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                LogicalResourceId    ResourceStatusReason
+--------------------------------  ------------------  --------------------------  -------------------  ----------------------------------------------------------------------------------------------------------------
+2023-05-24 23:02:22.053000+00:00  CREATE_FAILED       AWS::CloudFormation::Stack  tCaT-default-01ae8e  Parameter validation failed: parameter value key-06be34ddb6f18111d for parameter name KeyPairName does not exist
+2023-05-24 23:02:18.931000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  tCaT-default-01ae8e  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Wednesday, 24. May 2023 11:03PM
+-----------------------------------------------------------------------------
+

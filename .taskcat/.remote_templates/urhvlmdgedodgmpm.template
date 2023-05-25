@@ -312,16 +312,16 @@ Resources:
 #         LambdaRate:
 #           Ref: LambdaRate
         
-Outputs:
-  VPCID:
-    Description: The ID of the deployed SD-WAN VPC.
-    Value: !Ref VPCID
-  vMX1InstanceID:
-    Description: First vMX instance ID.
-    Value:
-      Fn::GetAtt:
-      - VMX1Stack 
-      - Outputs.vMXInstanceID
+# Outputs:
+#   VPCID:
+#     Description: The ID of the deployed SD-WAN VPC.
+#     Value: !Ref VPCID
+#   vMX1InstanceID:
+#     Description: First vMX instance ID.
+#     Value:
+#       Fn::GetAtt:
+#       - VMX1Stack 
+#       - Outputs.vMXInstanceID
 #   vMX2InstanceID:
 #     Description: Second vMX instance ID.
 #     Value:

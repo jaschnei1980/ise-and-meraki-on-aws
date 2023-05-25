@@ -1,0 +1,20 @@
+-----------------------------------------------------------------------------
+Region: us-east-1
+StackName: tCaT-default-bbe1ab
+*****************************************************************************
+ResourceStatusReason:  
+Parameter validation failed: parameter value key-06be34ddb6f18111d for parameter name
+KeyPairName does not exist, parameter value ['us-east-1a us-east-1b'] for parameter
+name AvailabilityZones does not exist
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                LogicalResourceId    ResourceStatusReason
+--------------------------------  ------------------  --------------------------  -------------------  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+2023-05-24 22:50:11.009000+00:00  CREATE_FAILED       AWS::CloudFormation::Stack  tCaT-default-bbe1ab  Parameter validation failed: parameter value key-06be34ddb6f18111d for parameter name KeyPairName does not exist, parameter value ['us-east-1a us-east-1b'] for parameter name AvailabilityZones does not exist
+2023-05-24 22:50:08.482000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  tCaT-default-bbe1ab  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Wednesday, 24. May 2023 10:51PM
+-----------------------------------------------------------------------------
+
