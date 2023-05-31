@@ -59,6 +59,7 @@ Metadata:
           - OpenAPI
           - PXGrid
           - PXGridCloud
+          - KmsKey
       - Label:
           default: ISE user details
         Parameters:
@@ -183,6 +184,8 @@ Metadata:
         default: Private subnet 1 load balancer IP address
       LBPrivateAddressSubnet2:
         default: Private subnet 2 load balancer IP address
+      KmsKey:
+        default: KMS key for encryption
       
 Parameters:
   MerakiOrgID:
@@ -324,6 +327,7 @@ Parameters:
     AllowedValues:
       - '3.1'
       - '3.2'
+      - '3.3'
     Default: '3.1'
   EmailSubscription:
     Description: Email address for deployment health and failover status notifications.
@@ -850,6 +854,13 @@ Parameters:
     ConstraintDescription: IP address parameter must be in the form "x.x.x.x".
     Description: Private IP address of load balancer for private subnet 2.
     Type: String  
+  KmsKey:
+    Type: String
+    Default: ''
+    Description: >- 
+      Enter the KMS Key Id/ARN/Alias for encryption (Applicable only if EBSEncryption is "true".
+    ConstraintDescription: Enter a valid KMS Id/ARN/Alias
+
 Conditions:
   UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
 #   1vMXCondition: !Or
@@ -867,6 +878,28 @@ Rules:
           - !Ref password
           - !Ref ConfirmPwd
         AssertDescription: Password mismatch
+  Beta33RegionsNotAvailable:
+    RuleCondition: !Equals
+      - !Ref ISEVersion
+      - '3.3'
+    Assertions:
+      - Assert: !Or
+          - !Equals [!Ref 'AWS::Region', 'us-east-1']
+          - !Equals [!Ref 'AWS::Region', 'us-east-2']
+          - !Equals [!Ref 'AWS::Region', 'us-west-1']
+          - !Equals [!Ref 'AWS::Region', 'us-west-2']
+          - !Equals [!Ref 'AWS::Region', 'ap-south-1']
+          - !Equals [!Ref 'AWS::Region', 'ap-southeast-2']
+        AssertDescription: ISE Beta 3.3 is not available in this region
+  InvalidKms:
+    RuleCondition: !Equals
+      - EBSEncrypt
+      - 'true'
+    Assertions:
+      - Assert: !Not 
+          - !Equals [!Ref KmsKey, '']
+        AssertDescription: KMS Key Id/ARN/Alias cannot be empty if EBS Encruptions is true
+        
 
 Resources:
   VMXStack:
@@ -936,6 +969,7 @@ Resources:
         VPCCIDR: !Ref VPCCIDR
         Node1Hostname: !Ref Node1Hostname
         Node2Hostname: !Ref Node2Hostname
+        KmsKey: !Ref KmsKey
 
 
 #   VMX2Stack:

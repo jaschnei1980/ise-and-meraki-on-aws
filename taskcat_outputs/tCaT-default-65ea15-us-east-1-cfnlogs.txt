@@ -1,0 +1,18 @@
+-----------------------------------------------------------------------------
+Region: us-east-1
+StackName: tCaT-default-65ea15
+*****************************************************************************
+ResourceStatusReason:  
+Template error: every Fn::Equals object requires a list of 2 string parameters.
+*****************************************************************************
+*****************************************************************************
+Events:  
+TimeStamp                         ResourceStatus      ResourceType                LogicalResourceId    ResourceStatusReason
+--------------------------------  ------------------  --------------------------  -------------------  -------------------------------------------------------------------------------
+2023-05-30 19:25:23.415000+00:00  CREATE_FAILED       AWS::CloudFormation::Stack  tCaT-default-65ea15  Template error: every Fn::Equals object requires a list of 2 string parameters.
+2023-05-30 19:25:19.046000+00:00  CREATE_IN_PROGRESS  AWS::CloudFormation::Stack  tCaT-default-65ea15  User Initiated
+*****************************************************************************
+-----------------------------------------------------------------------------
+Tested on: Tuesday, 30. May 2023 07:26PM
+-----------------------------------------------------------------------------
+

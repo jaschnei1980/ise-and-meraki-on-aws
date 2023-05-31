@@ -1,12 +1,12 @@
 ---
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  Cisco Meraki- Main Stack- Deploys two vMX instances in different avalaibility zones. It also deploys 2 ISE instances and the components described in the ISE on AWS QuickStart
-  **WARNING** You will be billed for the AWS resources used if you create a stack from this template. 
+  Cisco Meraki- Main Stack- Deploys two vMX instances in different avalaibility zones in an exsisting VPC along with a Transit Gateway. 
+  **WARNING** You will be billed for the AWS resources used if you create a stack from this template.
 Metadata:
   QuickStartDocumentation:
-    EntrypointName: "Launch into a new VPC"
-    Order: "1"
+    EntrypointName: "Launch into an existing VPC"
+    Order: "2"
   LintSpellExclude:
     - openapi
     - pxGrid
@@ -19,18 +19,16 @@ Metadata:
     - mykeypair
     - hostname
     - failover
-    - events
-    - state
-    - machine
     - console
     - plaintext
     - Management
-    - Cloud  
+    - Cloud
+
   cfn-lint:
     config:
       ignore_checks:
-        - W9001 # Changing parameter name requires a code change.  
-  
+        - W9001 # Changing parameter name requires a code change.
+        
   AWS::CloudFormation::Interface:
     ParameterGroups:
       - Label:
@@ -69,36 +67,34 @@ Metadata:
           - ConfirmPwd
           - EmailSubscription
       - Label:
-          default: Key Pair Name for EC2 Instances
+          default: Network configuration
         Parameters:
-          - KeyPairName
-      - Label:
-          default: VPC Network configuration
-        Parameters:
-          - AvailabilityZones
+          - VPCID
           - VPCCIDR
-          - PublicSubnet1CIDR
-          - PublicSubnet2CIDR
-          - PrivateSubnet1CIDR
-          - PrivateSubnet2CIDR
+          - AZ1PublicSubnetID
+          - AZ2PublicSubnetID
+          - ManagementSubnet1Id
+          - ManagementSubnet2Id
           # - AmazonSideASN
+          - VPCRouteTableID
+          - VPCPrivateSubnet1ARouteTableID
+          - VPCPrivateSubnet2ARouteTableID
           - Branch1CIDR
-          - LBPrivateAddressSubnet1
-          - LBPrivateAddressSubnet2
       - Label:
           default: EC2 configuration
         Parameters:
           - InstanceType
-      # - Label:
-      #     default: AWS Lambda configuration
-      #   Parameters:
-      #     - LambdaRate
+      - Label:
+          default: AWS Lambda configuration
+        # Parameters:
+        #   - LambdaRate
       - Label:
           default: AWS Quick Start configuration
         Parameters:
           - QSS3BucketName
           - QSS3KeyPrefix
           - QSS3BucketRegion
+          - KeyPairName
     ParameterLabels:
       KeyPairName:
         default: Key pair name
@@ -106,50 +102,66 @@ Metadata:
         default: Meraki organization ID
       MerakiAPIKey:
         default: Meraki organization API key
-      AvailabilityZones:
-        default: Availability Zones to use for the VPC subnets
       InstanceType:
         default: Amazon EC2 instance type 
       NumberOfvMXs:
         default: Number of vMX instances
-      vMX1Token:
-        default: Authentication token, first vMX instance 
-      vMX2Token:
-        default: Authentication token, second vMX instance 
-      VPCCIDR:
-        default: CIDR block for the VPC
       vMX1MerakiNetworkTag:
         default: Meraki network tag, first vMX instance
       vMX2MerakiNetworkTag:
         default: Meraki network tag, second vMX instance
-      PublicSubnet1CIDR:
-        default: Public subnet 1 CIDR
-      PublicSubnet2CIDR:
-        default: Public subnet 2 CIDR
-      PrivateSubnet1CIDR:
-        default: Private subnet 1 CIDR
-      PrivateSubnet2CIDR:
-        default: Private subnet 2 CIDR
+      vMX1Token:
+        default: Authentication token, first vMX instance 
+      vMX2Token:
+        default: Authentication token, second vMX instance
+      VPCID:
+        default: VPC ID
+      VPCCIDR:
+        default: CIDR block for the VPC
+      # AvailabilityZone1CIDR:
+      #   default: CIDR block for public subnet 1 
+      # AvailabilityZone2CIDR:
+      #   default: CIDR block for public subnet 2 
       Branch1CIDR:
         default: Branch1 CIDR
-      LBPrivateAddressSubnet1:
-        default: Private subnet 1 load balancer IP address
-      LBPrivateAddressSubnet2:
-        default: Private subnet 2 load balancer IP address
-      FailoverRate:
-        default: Failover rate
-      AutoFailover:
-        default: Auto failover
-      HealthcheckRate:
-        default: Health check rate
+      VPCRouteTableID:
+        default: Existing VPC route table ID for Public Subnet
+      VPCPrivateSubnet1ARouteTableID:
+        default: Existing VPC route table ID for Private Subnet1
+      VPCPrivateSubnet2ARouteTableID:
+        default: Existing VPC route table ID for Private Subnet2
       QSS3BucketName:
         default: Quick Start S3 bucket name
       QSS3BucketRegion:
         default: Quick Start S3 bucket Region
       QSS3KeyPrefix:
         default: Quick Start S3 key prefix
+      # AmazonSideASN:
+      #   default: Transit gateway ASN
+      # LambdaRate:
+      #   default: CloudWatch Events rule rate
+      Node1Hostname:
+        default: Hostname node 1
+      Node2Hostname:
+        default: Hostname node 2
+      ManagementSubnet1Id:
+        default: Management network 1
+      ManagementSubnet2Id:
+        default: Management network 2
+      TimeZone:
+        default: Time zone
+      ISEInstanceType:
+        default: Instance type
+      ISEVersion:
+        default: ISE version
       EmailSubscription:
         default: Email address
+      EBSEncrypt:
+        default: EBS encryption
+      StorageSize:
+        default: Volume size
+      DNSDomain:
+        default: DNS domain
       ERSapi:
         default: ERS
       OpenAPI:
@@ -158,44 +170,31 @@ Metadata:
         default: pxGrid
       PXGridCloud:
         default: pxGrid Cloud
-      Node1Hostname:
-        default: Host name node 1
-      Node2Hostname:
-        default: Host name node 2
-      DNSDomain:
-        default: DNS domain
       password:
         default: Administrator password
       ConfirmPwd:
         default: Confirm password
-      TimeZone:
-        default: Time zone
-      ISEInstanceType:
-        default: Instance type
-      ISEVersion:
-        default: Instance version
-      StorageSize:
-        default: Volume size
-      EBSEncrypt:
-        default: EBS encryption
-      # AmazonSideASN:
-      #   default: Transit gateway ASN
-      # LambdaRate:
-      #   default: CloudWatch Events rule rate
+      AutoFailover:
+        default: Auto failover
+      FailoverRate:
+        default: Failover rate
+      HealthcheckRate:
+        default: Health check rate
+      LBPrivateAddressSubnet1:
+        default: Private subnet 1 load balancer IP address
+      LBPrivateAddressSubnet2:
+        default: Private subnet 2 load balancer IP address
       KmsKey:
         default: KMS key for encryption
+      
 Parameters:
   MerakiOrgID:
     Description: Meraki organization ID.
     Type: String
-    NoEcho: 'true'
   MerakiAPIKey:
     Description: Meraki organization API key.
     Type: String
     NoEcho: 'true'
-  AvailabilityZones:
-    Description: List of Availability Zones to use for the VPC subnets. Two Availability Zones are used for this deployment.
-    Type: List<AWS::EC2::AvailabilityZone::Name>
   InstanceType:
     Description: Amazon EC2 instance type for the vMX instances. For recommended and supported instance types, see https://documentation.meraki.com/MX/MX_Installation_Guides/vMX_Setup_Guide_for_Amazon_Web_Services_(AWS)[vMX Setup Guide for Amazon Web Services (AWS)]. 
     Type: String
@@ -212,6 +211,14 @@ Parameters:
       - '1'
       - '2'
     Default: '2'
+  vMX1MerakiNetworkTag:
+    Description: On the Meraki dashboard, the vMX network tag for the first vMX instance.
+    Type: String
+    Default: vMX1
+  vMX2MerakiNetworkTag:
+    Description: On the Meraki dashboard, the vMX network tag for the second vMX instance.
+    Type: String
+    Default: vMX2
   vMX1Token:
     Description: Onboarding token for the first vMX instance. You can obtain the token from the https://account.meraki.com/login/dashboard_login?go=%2F[Meraki dashboard^]. 
     Type: String
@@ -220,35 +227,20 @@ Parameters:
     Description: Onboarding token for the second vMX instance. You can obtain the token from the https://account.meraki.com/login/dashboard_login?go=%2F[Meraki dashboard^]. 
     Type: String
     Default: change_to_match_the_token_from_meraki_dashboard
+  AZ1PublicSubnetID:
+    Description: ID of the public subnet in Availability Zone 1 of the existing VPC (e.g., `subnet-z0376dab`).
+    Type: "AWS::EC2::Subnet::Id"
+  AZ2PublicSubnetID:
+    Description: ID of the public subnet in Availability Zone 2 of the existing VPC (e.g., `subnet-a29c3d84`).
+    Type: "AWS::EC2::Subnet::Id"
+  VPCID:
+    Description: ID of the existing VPC for deployment (e.g., `vpc-0343606e`).
+    Type: AWS::EC2::VPC::Id
   VPCCIDR:
     AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$'
     ConstraintDescription: CIDR block parameter must be in the form `x.x.x.x/16-28`.
     Default: 10.0.0.0/16
     Description: CIDR block for the VPC.
-    Type: String
-  PrivateSubnet1CIDR:
-    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$'
-    ConstraintDescription: CIDR block parameter must be in the form "x.x.x.x/17-28".
-    Default: 10.0.0.0/19
-    Description: CIDR block for private subnet 1, located in Availability Zone 1.
-    Type: String
-  PrivateSubnet2CIDR:
-    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$'
-    ConstraintDescription: CIDR block parameter must be in the form "x.x.x.x/17-28".
-    Default: 10.0.32.0/19
-    Description: CIDR block for private subnet 2, located in Availability Zone 2.
-    Type: String
-  PublicSubnet1CIDR:
-    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$'
-    ConstraintDescription: CIDR block parameter must be in the form "x.x.x.x/17-28".
-    Default: 10.0.128.0/20
-    Description: CIDR block for the public (DMZ) subnet 1, located in Availability Zone 1.
-    Type: String
-  PublicSubnet2CIDR:
-    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$'
-    ConstraintDescription: CIDR block parameter must be in the form "x.x.x.x/17-28".
-    Default: 10.0.144.0/20
-    Description: CIDR block for the public (DMZ) subnet 2, located in Availability Zone 2.
     Type: String
   Branch1CIDR:
     AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\/(1[6-9]|2[0-8]))$'
@@ -256,18 +248,15 @@ Parameters:
     Default: 192.168.0.0/16
     Description: CIDR block for the Branch1.
     Type: String
-  LBPrivateAddressSubnet1:
-    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])'
-    ConstraintDescription: IP address parameter must be in the form "x.x.x.x".
-    Default: 10.0.0.4
-    Description: Private IP address of load balancer for private subnet 1.
+  VPCRouteTableID:
+    Description: ID of the existing VPC main route table (e.g., `rt-0343606e`).
     Type: String
-  LBPrivateAddressSubnet2:
-    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])'
-    ConstraintDescription: IP address parameter must be in the form "x.x.x.x",
-    Default: 10.0.32.4
-    Description: Private IP address of load balancer for private subnet 2.
+  VPCPrivateSubnet1ARouteTableID:
+    Description: ID of the existing VPC main route table (e.g., `rt-0343606e`).
     Type: String
+  VPCPrivateSubnet2ARouteTableID:
+    Description: ID of the existing VPC main route table (e.g., `rt-0343606e`).
+    Type: String    
   QSS3BucketName:
     AllowedPattern: '^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$'
     ConstraintDescription:
@@ -315,21 +304,13 @@ Parameters:
   #   Description: Autonomous System Number (ASN) for the transit gateway.
   #   Type: String
   # LambdaRate:
-  #   Description: How often the CloudWatch Events rule runs. The rule invokes AWS Lambda to update the VPC and transit gateway route tables. 
+  #   Description: How often the CloudWatch Events rule runs. The rule invokes AWS Lambda to update the VPC and transit gateway route tables.  
   #   Default: rate(10 minutes)
   #   AllowedValues:
   #     - rate(1 minute)
   #     - rate(10 minutes)
   #     - rate(60 minutes)
   #   Type: String
-  vMX1MerakiNetworkTag:
-    Description: On the Meraki dashboard, the vMX network tag for the first vMX instance.
-    Type: String
-    Default: vMX1
-  vMX2MerakiNetworkTag:
-    Description: On the Meraki dashboard, the vMX network tag for the second vMX instance.
-    Type: String
-    Default: vMX2
   ISEInstanceType:
     Type: String
     Description: Cisco ISE EC2 instance type.
@@ -342,7 +323,7 @@ Parameters:
     ConstraintDescription: Choose one of the values provided.
   ISEVersion:
     Type: String
-    Description: ISE software version for the ISE instances.
+    Description: The ISE software version for the ISE instances.
     AllowedValues:
       - '3.1'
       - '3.2'
@@ -378,7 +359,7 @@ Parameters:
   PXGrid:
     Description: Chose "yes" to enable pxGrid.
     Type: String
-    Default: 'yes'
+    Default: 'no'
     AllowedValues:
       - 'yes'
       - 'no'
@@ -386,11 +367,19 @@ Parameters:
   PXGridCloud:
     Description: Choose "yes" to enable pxGrid Cloud.
     Type: String
-    Default: 'yes'
+    Default: 'no'
     AllowedValues:
       - 'yes'
       - 'no'
     ConstraintDescription: Choose "yes" or "no".
+  ManagementSubnet1Id:
+    Type: 'AWS::EC2::Subnet::Id'
+    Description: >-
+      ID of the private subnet in Availability Zone 1 of your existing VPC (for example, "subnet-z0376dab").
+  ManagementSubnet2Id:
+    Type: 'AWS::EC2::Subnet::Id'
+    Description: >-
+      ID of the private subnet in Availability Zone 2 of your existing VPC (for example, "subnet-z0376dab").
   Node1Hostname:
     Description: >-
       Hostname for node 1, not to exceed 19 characters. Hostname can include alphanumeric characters and hyphen (-).
@@ -407,42 +396,15 @@ Parameters:
     AllowedPattern: '^[a-zA-Z0-9-]{1,19}$'
     ConstraintDescription: >-
       Maximum length is 19 characters. Hostname can include alphanumeric characters and hyphen (-).
-  FailoverRate:
-    Description:
-      The frequency at which CloudWatch Events invokes the Lambda function that invokes the failover state machine.
-    Default: rate(60 minutes)
-    AllowedValues:
-      - rate(1 minute)
-      - rate(10 minutes)
-      - rate(60 minutes)
-    Type: String
-  HealthcheckRate:
-    Description:
-      The frequency at which CloudWatch Events invokes the Lambda function that checks ISE deployment health.
-    Default: rate(10 minutes)
-    AllowedValues:
-      - rate(1 minute)
-      - rate(10 minutes)
-      - rate(60 minutes)
-    Type: String
-  AutoFailover:
-    Description: Choose ENABLED to configure the failover state machine to run periodically as an EventBridge rule.
-    Type: String
-    Default: 'DISABLED'
-    AllowedValues:
-      - 'ENABLED'
-      - 'DISABLED'
-    ConstraintDescription: Choose ENABLED or DISABLED.
   DNSDomain:
     Description: >-
-      Enter a domain name (for example, "cisco.com"). Domain name can include ASCII characters, numbers, hyphen (-), and
-      period (.). If you use the wrong syntax, Cisco ISE services might not come
+      Enter a domain name (for example, "cisco.com"). Domain name can include ASCII characters, numbers, hyphen (-), and period (.). If you use the wrong syntax, Cisco ISE services might not come
       up on launch.
     Type: String
     Default: example.com
     AllowedPattern: '^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$'
     ConstraintDescription: >-
-      Cannot be an IP address. Domain name can include ASCII characters, numbers, hyphen (-), and period (.).
+      Cannot be an IP address. Domain name can include ASCII characters, numbers, the hyphen (-), and the period (.) for DNS domain.
   TimeZone:
     Description: Choose a system time zone.
     Type: String
@@ -833,36 +795,82 @@ Parameters:
       - Pacific/Tongatapu
       - Pacific/Wake
       - Pacific/Wallis
-      - WET
+      - WET 
   password:
     Description: >-
       Password for the default admin, used to access the Cisco ISE GUI. Password must align with Cisco ISE password policy. Must contain 6-25 characters and contain at least one number, uppercase letter, and lowercase letter. Valid characters: A-Z, a-z, 0-9, and . , + = @ ~ ! _ - (hyphen). Do not use user name ("admin") or reverse user name ("nimda"). User names for ISE 3.1 and 3.2+ are "admin" and "iseadmin", respectively. Cannot contain "cisco" or "ocsic". Warning: This password displays in plaintext on the Edit user data page in the Amazon EC2 console.
     NoEcho: 'True'
     Type: String
     AllowedPattern: >-
-      ^(?=.*?[A-Z])(?=.*?[a-z])(?i)(?!.*?admin|.*?cisco|.*?nimda|.*?ocsic)(?-i)(?=.*?[0-9]).{6,}$
+      ^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@~*!,+=_-])(?!.*?[iI]{1}[sS]{1}[eE]{1}[aA]{1}[dD]{1}[mM]{1}[iI]{1}[nN]{1})(?!.*?[nN]{1}[iI]{1}[mM]{1}[dD]{1}[aA]{1}[eE]{1}[sS]{1}[iI]{1})(?!.*?[cC]{1}[iI]{1}[sS]{1}[cC]{1}[oO]{1})(?!.*?[oO]{1}[cC]{1}[sS]{1}[iI]{1}[cC]{1})|(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?!.*?[iI]{1}[sS]{1}[eE]{1}[aA]{1}[dD]{1}[mM]{1}[iI]{1}[nN]{1})(?!.*?[nN]{1}[iI]{1}[mM]{1}[dD]{1}[aA]{1}[eE]{1}[sS]{1}[iI]{1})(?!.*?[cC]{1}[iI]{1}[sS]{1}[cC]{1}[oO]{1})(?!.*?[oO]{1}[cC]{1}[sS]{1}[iI]{1}[cC]{1})).{6,25}$
     ConstraintDescription: >-
       Minimum of six characters. One digit, one uppercase, and one lowercase letter required. Do not use user name ("admin") or reverse user name ("nimda"). Cannot contain "cisco" or "ocsic".
   ConfirmPwd:
     Description: Confirm password.
     NoEcho: 'True'
     Type: String
+  FailoverRate:
+    Description:
+      The frequency at which CloudWatch Events invokes the Lambda function that invokes the failover state machine.
+    Default: rate(60 minutes)
+    AllowedValues:
+      - rate(1 minute)
+      - rate(10 minutes)
+      - rate(60 minutes)
+    Type: String
+  HealthcheckRate:
+    Description:
+      The frequency at which CloudWatch Events invokes the Lambda function that checks ISE deployment health.
+    Default: rate(10 minutes)
+    AllowedValues:
+      - rate(1 minute)
+      - rate(10 minutes)
+      - rate(60 minutes)
+    Type: String
+  AutoFailover:
+    Description: Choose ENABLED to configure the failover state machine to run periodically as an EventBridge rule.
+    Type: String
+    Default: 'DISABLED'
+    AllowedValues:
+      - 'ENABLED'
+      - 'DISABLED'
+    ConstraintDescription: Choose ENABLED or DISABLED.
   StorageSize:
     Description: >-
-      Storage size, 300GB–2400GB. We recommend 600GB+ for production use. Only use a storage size less than 600GB for evaluation purposes. Storage volume deleted when instance is terminated.
+      Storage size, 300GB?2400GB. We recommend 600GB+ for production use. Only use a storage size less than 600GB for evaluation purposes. Storage volume deleted when instance is terminated.
     Type: Number
     Default: '600'
     MinValue: '300'
     MaxValue: '2400'
     ConstraintDescription: >-
-      Storage size, 300GB–2400GB. We recommend 600GB+ for production use. Only use a storage size less than 600GB for evaluation purposes. Storage volume deleted when instance is terminated.
+      Storage size, 300GB?2400GB. We recommend 600GB+ for production use. Only use a storage size less than 600GB for evaluation purposes. Storage volume deleted when instance is terminated.
+  LBPrivateAddressSubnet1:
+    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])'
+    ConstraintDescription: IP address parameter must be in the form "x.x.x.x".
+    Description: Private IP address of load balancer for private subnet 1.
+    Type: String
+  LBPrivateAddressSubnet2:
+    AllowedPattern: '^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])'
+    ConstraintDescription: IP address parameter must be in the form "x.x.x.x".
+    Description: Private IP address of load balancer for private subnet 2.
+    Type: String  
   KmsKey:
     Type: String
     Default: ''
     Description: >- 
       Enter the KMS Key Id/ARN/Alias for encryption (Applicable only if EBSEncryption is "true".
     ConstraintDescription: Enter a valid KMS Id/ARN/Alias
- 
+
+Conditions:
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
+#   1vMXCondition: !Or
+#     - !Equals
+#       - !Ref 'NumberOfvMXs'
+#       - '1'
+#     - !Condition 2vMXCondition
+#   2vMXCondition: !Equals
+#     - !Ref 'NumberOfvMXs'
+#     - '2'
 Rules:
   PasswdMismatch:
     Assertions:
@@ -891,51 +899,25 @@ Rules:
       - Assert: !Not 
           - !Equals [!Ref KmsKey, '']
         AssertDescription: KMS Key Id/ARN/Alias cannot be empty if EBS Encruptions is true
-    
-
-Conditions:
-  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
+        
 
 Resources:
-  VPCStack:
-    Type: 'AWS::CloudFormation::Stack'
-    Properties:
-      TemplateURL:
-        !Sub
-          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/quickstart-aws-vpc/templates/aws-vpc.template.yaml
-          - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
-            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
-      Parameters:
-        AvailabilityZones: !Join 
-          - ','
-          - !Ref AvailabilityZones
-        NumberOfAZs: '2'
-        PrivateSubnet1ACIDR: !Ref PrivateSubnet1CIDR
-        PrivateSubnet2ACIDR: !Ref PrivateSubnet2CIDR
-        PublicSubnet1CIDR: !Ref PublicSubnet1CIDR
-        PublicSubnet2CIDR: !Ref PublicSubnet2CIDR
-        VPCCIDR: !Ref VPCCIDR
-        
-  WorkloadStack:
-    DependsOn: VPCStack
+  VMXStack:
+    # Condition: 1vMXCondition 
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL:
         !Sub
-          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-cisco-ise-and-meraki-workload.template.yaml
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-cisco-ise-and-meraki-vmx-instance.yaml
           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
       Parameters:
-        MerakiOrgID:
-          Ref: MerakiOrgID
-        MerakiAPIKey:
-          Ref: MerakiAPIKey
         InstanceType:
           Ref: InstanceType
         KeyPairName:
           Ref: KeyPairName
-        NumberOfvMXs:
-          Ref: NumberOfvMXs
+        SubnetID:
+          Ref: AZ1PublicSubnetID
         vMX1Token:
           Ref: vMX1Token
         vMX2Token:
@@ -944,114 +926,143 @@ Resources:
           Ref: vMX1MerakiNetworkTag
         vMX2MerakiNetworkTag:
           Ref: vMX2MerakiNetworkTag
-        AZ1PublicSubnetID:
-          Fn::GetAtt:
-          - VPCStack
-          - Outputs.PublicSubnet1ID 
-        AZ2PublicSubnetID:
-          Fn::GetAtt:
-          - VPCStack
-          - Outputs.PublicSubnet2ID
+        VPCPrivateSubnet1ARouteTableID:
+          Ref: VPCPrivateSubnet1ARouteTableID
+        VPCPrivateSubnet2ARouteTableID:
+          Ref: VPCPrivateSubnet2ARouteTableID  
         VPCID:
-          Fn::GetAtt:
-          - VPCStack
-          - Outputs.VPCID
+          Ref: VPCID
         VPCCIDR:
           Ref: VPCCIDR
         Branch1CIDR:
           Ref: Branch1CIDR
-        VPCRouteTableID:
-          Fn::GetAtt:
-          - VPCStack 
-          - Outputs.PublicSubnetRouteTable
-        VPCPrivateSubnet1ARouteTableID:
-          Fn::GetAtt:
-          - VPCStack 
-          - Outputs.PrivateSubnet1ARouteTable
-        VPCPrivateSubnet2ARouteTableID:
-          Fn::GetAtt:
-          - VPCStack 
-          - Outputs.PrivateSubnet2ARouteTable 
-        # AmazonSideASN:
-        #   Ref: AmazonSideASN
-        # LambdaRate:
-        #   Ref: LambdaRate
-        QSS3BucketName:
-          Ref: QSS3BucketName
-        QSS3BucketRegion:
-          Ref: QSS3BucketRegion 
-        QSS3KeyPrefix:
-          Ref: QSS3KeyPrefix
-          
-        Node1Hostname: !Ref Node1Hostname
-        Node2Hostname: !Ref Node2Hostname  
-        TimeZone: !Ref TimeZone
+  ISEStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL:
+        !Sub
+          - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-cisco-ise-and-meraki-ise-instance.template.yaml
+          - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+            S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      Parameters:
         ISEInstanceType: !Ref ISEInstanceType
         ISEVersion: !Ref ISEVersion
+        KeyPairName: !Ref KeyPairName
+        PrivateSubnet1A: !Ref ManagementSubnet1Id
+        PrivateSubnet1B: !Ref ManagementSubnet2Id
         EBSEncrypt: !Ref EBSEncrypt
         StorageSize: !Ref StorageSize
+        TimeZone: !Ref TimeZone
         DNSDomain: !Ref DNSDomain
         ERSapi: !Ref ERSapi
         OpenAPI: !Ref OpenAPI
         PXGrid: !Ref PXGrid
         PXGridCloud: !Ref PXGridCloud
         password: !Ref password
-        ConfirmPwd: !Ref ConfirmPwd
-        EmailSubscription: !Ref EmailSubscription
+        LBPrivateAddressSubnet1: !Ref LBPrivateAddressSubnet1
+        LBPrivateAddressSubnet2: !Ref LBPrivateAddressSubnet2
         AutoFailover: !Ref AutoFailover
         FailoverRate: !Ref FailoverRate
         HealthcheckRate: !Ref HealthcheckRate
-        LBPrivateAddressSubnet1: !Ref LBPrivateAddressSubnet1
-        LBPrivateAddressSubnet2: !Ref LBPrivateAddressSubnet2
+        EmailSubscription: !Ref EmailSubscription
+        VPCID: !Ref VPCID
+        VPCCIDR: !Ref VPCCIDR
+        Node1Hostname: !Ref Node1Hostname
+        Node2Hostname: !Ref Node2Hostname
         KmsKey: !Ref KmsKey
-        ManagementSubnet1Id:
-          Fn::GetAtt:
-          - VPCStack
-          - Outputs.PrivateSubnet1AID
-        ManagementSubnet2Id:
-          Fn::GetAtt:
-          - VPCStack
-          - Outputs.PrivateSubnet2AID
-        
-        
+
+
+#   VMX2Stack:
+#     Condition: 2vMXCondition 
+#     Type: AWS::CloudFormation::Stack
+#     Properties:
+#       TemplateURL:
+#         !Sub
+#           - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-cisco-meraki-sdwan-vmx-instance.yaml
+#           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+#             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+#       Parameters:
+#         InstanceType:
+#           Ref: InstanceType
+#         KeyPairName:
+#           Ref: KeyPairName
+#         SubnetID:
+#           Ref: AZ2PublicSubnetID
+#         vMXToken:
+#           Ref: vMX2Token
+#         vMXMerakiNetworkTag:
+#           Ref: vMX2MerakiNetworkTag
+
+#   TGWStack:
+#     Type: AWS::CloudFormation::Stack
+#     Properties:
+#       TemplateURL:
+#         !Sub
+#           - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/quickstart-cisco-meraki-sdwan-vmx-tgw.yaml
+#           - S3Region: !If [UsingDefaultBucket, !Ref 'AWS::Region', !Ref QSS3BucketRegion]
+#             S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+#       Parameters:
+#         AvailabilityZone1SubnetID:
+#           Ref: AZ1PublicSubnetID
+#         AvailabilityZone2SubnetID:
+#           Ref: AZ2PublicSubnetID
+#         VPCID:
+#           Ref: VPCID
+#         AmazonSideASN:
+#           Ref: AmazonSideASN
+#         QSS3BucketName:
+#           Ref: QSS3BucketName
+#         QSS3KeyPrefix:
+#           Ref: QSS3KeyPrefix
+#         QSS3BucketRegion:
+#           Ref: QSS3BucketRegion
+#         SDWANVPCRTID:
+#           Ref: VPCRouteTableID
+#         MerakiAPIKey:
+#           Ref: MerakiAPIKey
+#         MerakiOrgID:
+#           Ref: MerakiOrgID
+#         vMX1MerakiNetworkTag:
+#           Ref: vMX1MerakiNetworkTag
+#         vMX2MerakiNetworkTag:
+#           Ref: vMX2MerakiNetworkTag
+#         LambdaRate:
+#           Ref: LambdaRate
         
 Outputs:
   VPCID:
     Description: The ID of the deployed SD-WAN VPC.
-    Value:
-      Fn::GetAtt:
-      - VPCStack
-      - Outputs.VPCID
+    Value: !Ref VPCID
   vMX1InstanceID:
     Description: First vMX instance ID.
     Value:
       Fn::GetAtt:
-      - WorkloadStack
+      - VMXStack 
       - Outputs.vMX1InstanceID
   vMX2InstanceID:
     Description: Second vMX instance ID.
     Value:
       Fn::GetAtt:
-      - WorkloadStack
+      - VMXStack 
       - Outputs.vMX2InstanceID
 #   TransitGatewayID:
 #     Description: Transit gateway instance ID.
 #     Value:
 #       Fn::GetAtt:
-#       - WorkloadStack
+#       - TGWStack
 #       - Outputs.TransitGatewayID
 #   LambdaID:
 #     Description: AWS Lambda function ID.
 #     Value:
 #       Fn::GetAtt:
-#       - WorkloadStack
-#       - Outputs.LambdaID
+#       - TGWStack
+#       - Outputs.LambdaFunctionID
 #   TGWRouteTable:
 #     Description: Transit gateway route table.
 #     Value:
 #       Fn::GetAtt:
-#       - WorkloadStack
-#       - Outputs.TGWRouteTable
-  Postdeployment:
-    Description: See the deployment guide for postdeployment steps.
-    Value: https://aws.amazon.com/quickstart/?quickstart-all.sort-by=item.additionalFields.s and https://fwd.aws/mA8Ym?
+#       - TGWStack
+#       - Outputs.TransitGatewaySDWANRouteTable
+#   Postdeployment:
+#     Description: See the deployment guide for postdeployment steps.
+#     Value: https://aws.amazon.com/quickstart/?quickstart-all.sort-by=item.additionalFields.s
