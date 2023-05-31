@@ -717,8 +717,7 @@ Mappings:
     '3.3':
       Code: BYOL33
 Conditions:
-  IsISE32Condition: !Equals [!Ref ISEVersion, '3.2' ]
-  # IsISE33Condition: !Equals [!Ref ISEVersion, '3.3' ]
+  IsISE31Condition: !Equals [!Ref ISEVersion, '3.1' ]
   IsEncrypted: !Equals [!Ref EBSEncrypt, 'true']
 Resources:
   ISESecurityGroup:
@@ -765,7 +764,50 @@ Resources:
         - Key: "Name"
           Value: !Ref Node1Hostname
       UserData: !If 
-        - IsISE32Condition
+        - IsISE31Condition
+        - !Base64
+            'Fn::Join':
+              - ''
+              - - hostname=
+                - !Ref Node1Hostname
+                - |+
+
+                - dnsdomain=
+                - !Ref DNSDomain
+                - |+
+
+                - primarynameserver=169.254.169.253
+                - |+
+
+                - ntpserver=169.254.169.123
+                - |+
+
+                - username=admin
+                - |+
+
+                - password=
+                - !Ref password
+                - |+
+
+                - timezone=
+                - !Ref TimeZone
+                - |+
+
+                - ersapi=
+                - !Ref ERSapi
+                - |+
+
+                - openapi=
+                - !Ref OpenAPI
+                - |+
+
+                - pxGrid=
+                - !Ref PXGrid
+                - |+
+
+                - pxgrid_cloud=
+                - !Ref PXGridCloud
+                - |+
         - !Base64
             'Fn::Join':
               - ''
@@ -810,49 +852,7 @@ Resources:
                 - !Ref PXGridCloud
                 - |+
 
-        - !Base64
-            'Fn::Join':
-              - ''
-              - - hostname=
-                - !Ref Node1Hostname
-                - |+
 
-                - dnsdomain=
-                - !Ref DNSDomain
-                - |+
-
-                - primarynameserver=169.254.169.253
-                - |+
-
-                - ntpserver=169.254.169.123
-                - |+
-
-                - username=admin
-                - |+
-
-                - password=
-                - !Ref password
-                - |+
-
-                - timezone=
-                - !Ref TimeZone
-                - |+
-
-                - ersapi=
-                - !Ref ERSapi
-                - |+
-
-                - openapi=
-                - !Ref OpenAPI
-                - |+
-
-                - pxGrid=
-                - !Ref PXGrid
-                - |+
-
-                - pxgrid_cloud=
-                - !Ref PXGridCloud
-                - |+
 
   ISENode2:
     Type: 'AWS::EC2::Instance'
@@ -865,7 +865,50 @@ Resources:
         - Key: "Name"
           Value: !Ref Node2Hostname
       UserData: !If
-        - IsISE32Condition
+        - IsISE31Condition
+        - !Base64
+            'Fn::Join':
+              - ''
+              - - hostname=
+                - !Ref Node2Hostname
+                - |+
+
+                - dnsdomain=
+                - !Ref DNSDomain
+                - |+
+
+                - primarynameserver=169.254.169.253
+                - |+
+
+                - ntpserver=169.254.169.123
+                - |+
+
+                - username=admin
+                - |+
+
+                - password=
+                - !Ref password
+                - |+
+
+                - timezone=
+                - !Ref TimeZone
+                - |+
+
+                - ersapi=
+                - !Ref ERSapi
+                - |+
+
+                - openapi=
+                - !Ref OpenAPI
+                - |+
+
+                - pxGrid=
+                - !Ref PXGrid
+                - |+
+
+                - pxgrid_cloud=
+                - !Ref PXGridCloud
+                - |+        
         - !Base64
             'Fn::Join':
               - ''
@@ -910,49 +953,7 @@ Resources:
                 - !Ref PXGridCloud
                 - |+
 
-        - !Base64
-            'Fn::Join':
-              - ''
-              - - hostname=
-                - !Ref Node2Hostname
-                - |+
 
-                - dnsdomain=
-                - !Ref DNSDomain
-                - |+
-
-                - primarynameserver=169.254.169.253
-                - |+
-
-                - ntpserver=169.254.169.123
-                - |+
-
-                - username=admin
-                - |+
-
-                - password=
-                - !Ref password
-                - |+
-
-                - timezone=
-                - !Ref TimeZone
-                - |+
-
-                - ersapi=
-                - !Ref ERSapi
-                - |+
-
-                - openapi=
-                - !Ref OpenAPI
-                - |+
-
-                - pxGrid=
-                - !Ref PXGrid
-                - |+
-
-                - pxgrid_cloud=
-                - !Ref PXGridCloud
-                - |+
 
   #Route53 configuration
   ForwardDNS:
@@ -1460,9 +1461,9 @@ Resources:
        Name: ADMIN_USERNAME
        Type: String
        Value: !If
-       - IsISE32Condition
-       - iseadmin
+       - IsISE31Condition
        - admin
+       - iseadmin
   AdminPasswordParameter:
      Type: AWS::SSM::Parameter
      Properties:
