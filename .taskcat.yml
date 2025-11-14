@@ -15,7 +15,7 @@ tests:
     - us-east-1
     parameters:
       MerakiOrgID: "772005"
-      MerakiAPIKey: "56b97420cbc8e498d01fe3b259a027bda20a29ea"
+      MerakiAPIKey: "xxxxxxxxx"
       NumberOfvMXs: "1"
       vMX1Token: "f9afee7c005e6bb44b1f97541758dc58/0f7144ee7e2c2a39f6b2b6270fa2d363a6c2dadbcd10ed078d84dbb87b7025830d86c609feba6066185c93a090305398a16e04eee17e5945feb8e07d25bf9609/7f0ea85c0d44946c7e0a854256d7058b6ee87390ee71968cfa66cc82f23d91a5"
       vMX2Token: "ff45273a73c89d8fea6eedf3afac5e17/8b5d05b7da4e910c5550782ea3fd9cbf2aab8278cfaa2291b92739668eb88f7bf1a0651628de99c79477fda8ced5fd33b28da58b050fcc0b415a07c98faf9e73/eb1d2242a4c231e7b092e74e56030f2a942e8b3d48ef16d655d1d60b33dd2865"
